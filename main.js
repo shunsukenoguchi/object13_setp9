@@ -32,6 +32,7 @@ const myArray = {
         this.forEach((value,index)=> {
             returnedValues.push(callback(value,index));
         });
+        return returnedValues;
     },
     filter: function(callback){
         const returnedValues = [];
@@ -40,6 +41,7 @@ const myArray = {
                 returnedValues.push(value);
             }
         });
+        return returnedValues;    
     }
 }
 
@@ -49,11 +51,24 @@ console.log('forEach--------------');
 myArray.forEach((value,index) => {
     console.log('index :',index,"value :",value);
 });
-
+// ここでmyArray.mapを実行したあと、mapの戻り値とmyArray.arrayをconsole.logで出力する
 // mapメソッドで取得する値は、myArray.arrayの各要素をindex倍した値とする。(value * index)
-
+// mapの戻り値は[0, 2, 6], myArray.arrayの値は[1, 2, 3]であるべき// mapメソッドで取得する値は、myArray.arrayの各要素をindex倍した値とする。(value * index)
+console.log('map--------------');
+const returnedValuesOfMap = myArray.map((value,index) => {
+    return value * index;
+});
+console.log('myArray.array :',myArray.array);
+console.log('returnedValuesOfMap :',returnedValuesOfMap);
 
 //ここでfilterを実行したあと、filterの戻り値とmyArray.arrayをconsole.logで出力する
-
-
 // filterメソッドで取得する値は、myArray.arrayの奇数だけとする
+// filterの戻り値は[1, 3], myArray.arrayの値は[1, 2, 3]であるべき
+
+console.log('filter--------------');
+const returnedValuesOfFilter = myArray.filter((value,index) => {
+    return value % 2 === 1;
+});
+
+console.log('myArray.array :',myArray.array);
+console.log('returnedValuesOfFilter :',returnedValuesOfFilter);
