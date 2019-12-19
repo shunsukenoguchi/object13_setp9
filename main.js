@@ -20,12 +20,40 @@
 
 
 // ここでmyArray.forEachを実行して、console.logを使って各値とインデックスを出力する
-
+const myArray = {
+    array: [1, 2, 3],   
+    forEach: (callback) => {
+        for (let i=0; i<this.array.length; i++) {
+            callback(this.array[i],i);
+        }
+    },
+    map:(callback)=>{
+        const returnedValues = [];
+        this.forEach((value,index)=> {
+            returnedValues.push(callback(value,index));
+        });
+    },
+    filter: function(callback){
+        const returnedValues = [];
+        this.forEach((value,index)=> {
+            if(callback(value,index)){
+                returnedValues.push(value);
+            }
+        });
+    }
+}
 
 
 // ここでmyArray.mapを実行したあと、mapの戻り値とmyArray.arrayをconsole.logで出力する
+console.log('forEach--------------');
+myArray.forEach((value,index) => {
+    console.log('index :',index,"value :",value);
+});
+
 // mapメソッドで取得する値は、myArray.arrayの各要素をindex倍した値とする。(value * index)
 
 
 //ここでfilterを実行したあと、filterの戻り値とmyArray.arrayをconsole.logで出力する
+
+
 // filterメソッドで取得する値は、myArray.arrayの奇数だけとする
